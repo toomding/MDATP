@@ -57,8 +57,9 @@ while ($ae.MoveNext() -and $be.MoveNext()) {
 		$auditCounter=$auditCounter+1
 	}
 }
+$AsrNotConfigured= (15 - $disabledCounter - $enabledCounter - $auditCounter)
 Write-Host "     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
-Write-Host "    " "Disabled Asr rule in total is :" $disabledCounter ";" "Enabled Asr rule in total is  :" $enabledCounter ";" "Audited Asr rule in total is  :" $auditCounter ";" " There are" $counter " rules presented in system."
+Write-Host "    " "Disabled Asr rule in total is :" $disabledCounter ";" "Enabled Asr rule in total is  :" $enabledCounter ";" "Audited Asr rule in total is  :" $auditCounter ";" "Not Configured rule in total is : " $AsrNotConfigured ";" "There are" $counter " rules presented in system."
 }
 <# Run this function #>
 Get-AsrStatus
