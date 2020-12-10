@@ -1,6 +1,6 @@
 <#
 Av Status Fetcher
- 
+Attention: As long as the Defender is not primary software, regardless it is in passive mode or PxP mode. it will all show disabled.
 By Tom.Ding
 #>
 Function Get-AvStatusFetcher {
