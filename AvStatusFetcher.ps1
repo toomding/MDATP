@@ -29,5 +29,6 @@ Function Get-AvStatusFetcher {
            Write-Host "Didn't find any matched"
        }
        }
+    if ($seq -ge 2) { Write-Host "There are total $seq Av softwares presented on this system." } else { Write-Host "There is 1 Av Software presented on this system."}
     }
 Get-AvStatusFetcher
