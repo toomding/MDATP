@@ -34,6 +34,6 @@ Function Get-AvStatusFetcher {
            Write-Host $seq " : " $AvName[$counter].displayName "didn't find any matched or installed before but currently not exist in system"
        }
        }
-     Write-Host "There are total $AVnum AV softwares installed on this system."
+     Write-Host "Total $AVnum AV installed on this system."
     }
 Get-AvStatusFetcher
