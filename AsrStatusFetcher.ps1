@@ -28,7 +28,8 @@ $ASRID_HashTable = @{
 $ASRStatus_HashTable = @{
 	"0" = "Disabled";
 	"1" = "Enabled ";
-	"2" = "Audit   "
+	"2" = "Audit   ";
+        "6" = "Warn    "
 }
 <# Define Get Asr Status Function #>
 Function Get-AsrStatus {
@@ -40,6 +41,7 @@ $counter=0
 $disabledCounter=0
 $enabledCounter=0
 $auditCounter=0
+$warnCounter=0
 Write-Host "                  " "Asr ID" "                 " "Asr Status code" "           "  "Asr Status" "         " "Asr Description" "                                                                                     "  "SN"
 Write-Host "     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
 while ($ae.MoveNext() -and $be.MoveNext()) {
@@ -53,13 +55,16 @@ while ($ae.MoveNext() -and $be.MoveNext()) {
 		$disabledCounter=$disabledCounter+1
 	} elseif($AsrStatusCode -eq 1){
 		$enabledCounter=$enabledCounter+1
-	} else {
+        } elseif($AsrStatusCode -eq 6){
+                $warnCounter=$warnCounter+1
+        } else {
 		$auditCounter=$auditCounter+1
 	}
 }
-$AsrNotConfigured= (15 - $disabledCounter - $enabledCounter - $auditCounter)
+$AsrNotConfigured= (15 - $disabledCounter - $enabledCounter - $auditCounter -$warnCounter)
 Write-Host "     --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
-Write-Host "    " "Disabled Asr rule in total is :" $disabledCounter ";" "Enabled Asr rule in total is  :" $enabledCounter ";" "Audited Asr rule in total is  :" $auditCounter ";" "Not Configured rule in total is : " $AsrNotConfigured ";" "There are" $counter " rules presented in system."
+Write-Host "    " "Disabled Asr rule in total is :" $disabledCounter ";" "Enabled Asr rule in total is  :" $enabledCounter ";" "Audited Asr rule in total is  :" $auditCounter ";" "Warn Asr rule in total is  :" $warnCounter "."
+Write-Host "    " "Not Configured rule in total is : " $AsrNotConfigured ";" "There are" $counter " rules presented in system."
 }
 <# Run this function #>
 Get-AsrStatus
